@@ -17,13 +17,13 @@ $(document).ready(function() {
             students = data.students;
             $('.outputDiv').empty();
             $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
-                '<br>' + '<em>' + students[i].info +  '</em>' + '<br>' + (i + 1) + '/17' + '</h4>');
+                '<br>' + '<em>' + students[i].info +  '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/17</p>');
         }
     });
     var displayStudent = function(index) {
         i = index;
         $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
-            '<br>' + '<em>' + students[i].info + '</em>' + '<br>' + (i + 1) + '/17' + '</h4>');
+            '<br>' + '<em>' + students[i].info + '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/17</p>');
     };
     //next student
     $('#nextStudent').on('click', function(students) {
@@ -35,7 +35,7 @@ $(document).ready(function() {
             i++;
             displayStudent(i);
         }
-        console.log('Clicked Next', i);
+        console.log('Clicked Next, index:', i);
     });
 
     //previous student
@@ -50,6 +50,6 @@ $(document).ready(function() {
             i--;
             displayStudent(i);
         }
-        console.log('Clicked Prev', i);
+        console.log('Clicked Prev, index:', i);
     });
 });
