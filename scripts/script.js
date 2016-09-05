@@ -5,7 +5,6 @@ var jsonUrl = 'http://devjana.net/pi/pi_students.json';
 //global variables
 var students = [];
 var i = 0;
-
 $(document).ready(function() {
     console.log('document ready');
     //ajax call
@@ -15,41 +14,65 @@ $(document).ready(function() {
         success: function(data) {
             console.log('success!', data.students);
             students = data.students;
+            displayIndex(students);
             $('.outputDiv').empty();
             $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
-                '<br>' + '<em>' + students[i].info +  '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/17</p>');
-        }
-    });
+                '<br>' + '<em>' + students[i].info +  '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/18</p>');
+        }//end success
+    });//end ajax
     var displayStudent = function(index) {
         i = index;
+        $('.outputDiv').fadeIn();
         $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
-            '<br>' + '<em>' + students[i].info + '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/17</p>');
-    };
+            '<br>' + '<em>' + students[i].info + '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/18</p>');
+    };//end displayStudent
+
     //next student
     $('#nextStudent').on('click', function(students) {
+      $('.outputDiv').fadeOut("slow", function(){
+        //empty div
         $('.outputDiv').empty();
-        if (i >= 16) {
+        if (i >= 17) {
             i = 0;
             displayStudent(i);
+
         } else {
             i++;
             displayStudent(i);
-        }
+        }});
         console.log('Clicked Next, index:', i);
-    });
+    });//end next student
 
     //previous student
     $('#prevStudent').on('click', function() {
+      $('.outputDiv').fadeOut("slow", function(){
         //empty div
         $('.outputDiv').empty();
         //append previous student's info
         if (i <= 0) {
-            i = 16;
+            i = 17;
             displayStudent(i);
         } else {
             i--;
             displayStudent(i);
-        }
+        }});
         console.log('Clicked Prev, index:', i);
-    });
-});
+    });//end previous student
+
+    var displayIndex = function() {
+      for (var i = 0; i < students.length; i++) {
+        $('.studentIndex').append('[<a class="student">' + students[i].first_name + '</a>] ');
+      }
+      console.log('in displayIndex');
+    };//end displayIndex
+
+    //when index is clicked...
+    // $('.studentIndex').on('click', '.student', function(){
+    //
+    //   console.log('clicked', );
+    //
+    // })
+
+
+
+});//end document ready
