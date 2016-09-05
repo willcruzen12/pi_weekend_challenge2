@@ -22,7 +22,9 @@ $(document).ready(function() {
     });//end ajax
     var displayStudent = function(index) {
         i = index;
+        //fade in
         $('.outputDiv').fadeIn();
+        //append student info
         $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
             '<br>' + '<em>' + students[i].info + '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/18</p>');
     };//end displayStudent
@@ -39,7 +41,7 @@ $(document).ready(function() {
         } else {
             i++;
             displayStudent(i);
-        }});
+        }});//end fadeOut
         console.log('Clicked Next, index:', i);
     });//end next student
 
@@ -55,14 +57,14 @@ $(document).ready(function() {
         } else {
             i--;
             displayStudent(i);
-        }});
+        }});//end fadeOut
         console.log('Clicked Prev, index:', i);
     });//end previous student
 
     var displayIndex = function() {
       for (var i = 0; i < students.length; i++) {
         $('.studentIndex').append('[<a class="student">' + students[i].first_name + '</a>] ');
-      }
+      }//end for loop
       console.log('in displayIndex');
     };//end displayIndex
 
