@@ -17,7 +17,7 @@ $(document).ready(function() {
             displayIndex(students);
             $('.outputDiv').empty();
             $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
-                '<br>' + '<em>' + students[i].info +  '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/18</p>');
+                '<br>' + '<em>' + students[i].info +  '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/' + students.length + '</p>');
         }//end success
     });//end ajax
     var displayStudent = function(index) {
@@ -26,7 +26,7 @@ $(document).ready(function() {
         $('.outputDiv').fadeIn();
         //append student info
         $('.outputDiv').append('<h4><strong>' + students[i].first_name + ' ' + students[i].last_name + '</strong>' +
-            '<br>' + '<em>' + students[i].info + '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/18</p>');
+            '<br>' + '<em>' + students[i].info + '</em>' + '</h4>' + '<br><p>' + (i + 1) + '/' + students.length + '</p>');
     };//end displayStudent
 
     //next student
@@ -61,20 +61,18 @@ $(document).ready(function() {
         console.log('Clicked Prev, index:', i);
     });//end previous student
 
-    var displayIndex = function() {
-      for (var i = 0; i < students.length; i++) {
-        $('.studentIndex').append('[<a class="student">' + students[i].first_name + '</a>] ');
-      }//end for loop
-      console.log('in displayIndex');
-    };//end displayIndex
 
     //when index is clicked...
-    // $('.studentIndex').on('click', '.student', function(){
-    //
-    //   console.log('clicked', );
-    //
-    // })
+    $('body').on('click', '.student', function(){
+      console.log('clicked', $(this).attr('data-id'));
+      i = $(this).attr('data-id');
 
-
-
+    })
 });//end document ready
+var displayIndex = function() {
+
+  for (var i = 0; i < students.length; i++) {
+    $('.studentIndex').append('[<a class="student" data-id=' + students[i].first_name + '>' + students[i].first_name + '</a>] ');
+  }//end for loop
+  console.log('in displayIndex');
+};//end displayIndex
