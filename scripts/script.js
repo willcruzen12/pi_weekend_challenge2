@@ -22,6 +22,7 @@ $(document).ready(function() {
     });//end ajax
     var displayStudent = function(index) {
         i = index;
+        $('.outputDiv').empty();
         //fade in
         $('.outputDiv').fadeIn();
         //append student info
@@ -46,7 +47,7 @@ $(document).ready(function() {
     });//end next student
 
     //previous student
-    $('#prevStudent').on('click', function() {
+    $('#prevStudent').on('click', function(students) {
       $('.outputDiv').fadeOut("fast", function(){
         //empty div
         $('.outputDiv').empty();
@@ -61,18 +62,23 @@ $(document).ready(function() {
         console.log('Clicked Prev, index:', i);
     });//end previous student
 
+    var displayIndex = function() {
+
+      for (var i = 0; i < students.length; i++) {
+        $('.studentIndex').append('[<a class="student" data-id=' + i + '>' + students[i].first_name + '</a>] ');
+      }//end for loop
+      console.log('in displayIndex');
+    };//end displayIndex
 
     //when index is clicked...
     $('body').on('click', '.student', function(){
-      console.log('clicked', $(this).attr('data-id'));
       i = $(this).attr('data-id');
-
+        console.log('clicked', i)
+      $('.outputDiv').fadeOut("fast", function(){
+        displayStudent(i);
+      });
     })
-});//end document ready
-var displayIndex = function() {
 
-  for (var i = 0; i < students.length; i++) {
-    $('.studentIndex').append('[<a class="student" data-id=' + students[i].first_name + '>' + students[i].first_name + '</a>] ');
-  }//end for loop
-  console.log('in displayIndex');
-};//end displayIndex
+
+
+});//end document ready
