@@ -31,7 +31,7 @@ $(document).ready(function() {
 
     //next student
     $('#nextStudent').on('click', function(students) {
-      $('.outputDiv').fadeOut("slow", function(){
+      $('.outputDiv').fadeOut("fast", function(){
         //empty div
         $('.outputDiv').empty();
         if (i >= 17) {
@@ -47,7 +47,7 @@ $(document).ready(function() {
 
     //previous student
     $('#prevStudent').on('click', function() {
-      $('.outputDiv').fadeOut("slow", function(){
+      $('.outputDiv').fadeOut("fast", function(){
         //empty div
         $('.outputDiv').empty();
         //append previous student's info
